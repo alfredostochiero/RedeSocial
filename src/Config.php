@@ -2,11 +2,11 @@
 namespace src;
 
 class Config {
-    const BASE_DIR = '/TESTES_PHP/CRUD_MVC/public';
+    const BASE_DIR = '/FACEBOOK_PHP7/public';
 
     const DB_DRIVER = 'mysql';
     const DB_HOST = 'localhost';
-    const DB_DATABASE = 'bancousuarios';
+    const DB_DATABASE = 'devsbook';
     CONST DB_USER = 'root';
     const DB_PASS = '';
 
