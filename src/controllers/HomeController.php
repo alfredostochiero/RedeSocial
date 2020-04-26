@@ -3,20 +3,30 @@ namespace src\controllers;
 
 use \core\Controller;
 use \src\handlers\LoginHandler;
+use \src\handlers\PostHandler;
+
 
 class HomeController extends Controller {
 
     private $loggedUser;
 
     public function __construct(){
-        $this->loggeduser = LoginHandler::checkLogin();
+        $this->loggedUser = LoginHandler::checkLogin();
         if(LoginHandler::checkLogin()=== false){
             $this->redirect('/login');
         }
     }
 
     public function index() {
-        $this->render('home', ['nome' => 'Alfredo']);
+
+        $feed =  PostHandler::getHomeFeed(
+            $this->loggedUser->id
+        );
+
+        $this->render('home', 
+        ['loggedUser' => $this->loggedUser,
+         'feed'=>$feed
+        ]);
     }
 
 
