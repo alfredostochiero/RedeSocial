@@ -19,15 +19,15 @@
                         </div>
                         <div class="profile-info-data row">
                             <div class="profile-info-item m-width-20">
-                                <div class="profile-info-item-n">35</div>
+                                <div class="profile-info-item-n"><?=count($user->followers);?></div>
                                 <div class="profile-info-item-s">Seguidores</div>
                             </div>
                             <div class="profile-info-item m-width-20">
-                                <div class="profile-info-item-n">100</div>
+                                <div class="profile-info-item-n"><?=count($user->following);?></div>
                                 <div class="profile-info-item-s">Seguindo</div>
                             </div>
                             <div class="profile-info-item m-width-20">
-                                <div class="profile-info-item-n">12</div>
+                                <div class="profile-info-item-n"><?=count($user->photos);?></div>
                                 <div class="profile-info-item-s">Fotos</div>
                             </div>
                         </div>
@@ -45,7 +45,7 @@
                         
                         <div class="user-info-mini">
                             <img src="<?=$base ?>/assets/images/calendar.png" />
-                            01/01/2000 (20 anos)
+                            <?php echo date('d/m/Y', strtotime($user->birthdate))?><?php echo " ".$user->ageYears; ?> anos
                         </div>
 
                         <?php if(!empty($user->city)): // just show city if it exists in the database ?>
@@ -69,7 +69,7 @@
                     <div class="box-header m-10">
                         <div class="box-header-text">
                             Seguindo
-                            <span>(363)</span>
+                            <span><?=count($user->following);?></span>
                         </div>
                         <div class="box-header-buttons">
                             <a href="">ver todos</a>
@@ -77,85 +77,22 @@
                     </div>
                     <div class="box-body friend-list">
                         
-                        <div class="friend-icon">
-                            <a href="">
-                                <div class="friend-icon-avatar">
-                                    <img src="media/avatars/avatar.jpg" />
+                        <?php for($q=0;$q<9;$q++): ?>
+                            <?php if(isset($user->following[$q])): ?>
+                                <div class="friend-icon">
+                                    <a href="<?=$base;?>/perfil/<?=$following[$q]->id;?>">
+                                        <div class="friend-icon-avatar">
+                                            <img src="<?=$base;?>/media/avatars/<?=$following[$q]->avatar;?>" />
+                                        </div>
+                                        <div class="friend-icon-name">
+                                            <?=$following[$q]->name;?>
+                                        </div>
+                                    </a>
                                 </div>
-                                <div class="friend-icon-name">
-                                    Alfredo
-                                </div>
-                            </a>
-                        </div>
-
-                        <div class="friend-icon">
-                            <a href="">
-                                <div class="friend-icon-avatar">
-                                    <img src="media/avatars/avatar.jpg" />
-                                </div>
-                                <div class="friend-icon-name">
-                                    Alfredo
-                                </div>
-                            </a>
-                        </div>
-
-                        <div class="friend-icon">
-                            <a href="">
-                                <div class="friend-icon-avatar">
-                                    <img src="media/avatars/avatar.jpg" />
-                                </div>
-                                <div class="friend-icon-name">
-                                    Alfredo
-                                </div>
-                            </a>
-                        </div>
-
-                        <div class="friend-icon">
-                            <a href="">
-                                <div class="friend-icon-avatar">
-                                    <img src="media/avatars/avatar.jpg" />
-                                </div>
-                                <div class="friend-icon-name">
-                                    Alfredo
-                                </div>
-                            </a>
-                        </div>
-
-                        <div class="friend-icon">
-                            <a href="">
-                                <div class="friend-icon-avatar">
-                                    <img src="media/avatars/avatar.jpg" />
-                                </div>
-                                <div class="friend-icon-name">
-                                    Alfredo
-                                </div>
-                            </a>
-                        </div>
-
-                        <div class="friend-icon">
-                            <a href="">
-                                <div class="friend-icon-avatar">
-                                    <img src="media/avatars/avatar.jpg" />
-                                </div>
-                                <div class="friend-icon-name">
-                                    Alfredo
-                                </div>
-                            </a>
-                        </div>
-
-                        <div class="friend-icon">
-                            <a href="">
-                                <div class="friend-icon-avatar">
-                                    <img src="media/avatars/avatar.jpg" />
-                                </div>
-                                <div class="friend-icon-name">
-                                    Alfredo
-                                </div>
-                            </a>
-                        </div>
-
-                    </div>
-                </div>
+                            <?php endif; ?>
+                        <?php endfor; ?>
+                    </div>  
+                </div>       
 
             </div>
             <div class="column pl-5">
@@ -164,111 +101,46 @@
                     <div class="box-header m-10">
                         <div class="box-header-text">
                             Fotos
-                            <span>(12)</span>
+                            <span><?=count($user->photos);?></span>
                         </div>
                         <div class="box-header-buttons">
                             <a href="">ver todos</a>
                         </div>
                     </div>
                     <div class="box-body row m-20">
-                        
-                        <div class="user-photo-item">
-                            <a href="#modal-1" rel="modal:open">
-                                <img src="media/uploads/1.jpg" />
-                            </a>
-                            <div id="modal-1" style="display:none">
-                                <img src="media/uploads/1.jpg" />
-                            </div>
-                        </div>
 
-                        <div class="user-photo-item">
-                            <a href="#modal-2" rel="modal:open">
-                                <img src="media/uploads/1.jpg" />
-                            </a>
-                            <div id="modal-2" style="display:none">
-                                <img src="media/uploads/1.jpg" />
-                            </div>
-                        </div>
-
-                        <div class="user-photo-item">
-                            <a href="#modal-3" rel="modal:open">
-                                <img src="media/uploads/1.jpg" />
-                            </a>
-                            <div id="modal-3" style="display:none">
-                                <img src="media/uploads/1.jpg" />
-                            </div>
-                        </div>
-
-                        <div class="user-photo-item">
-                            <a href="#modal-4" rel="modal:open">
-                                <img src="media/uploads/1.jpg" />
-                            </a>
-                            <div id="modal-4" style="display:none">
-                                <img src="media/uploads/1.jpg" />
-                            </div>
-                        </div>
-                        
+                       <?php for($q=0;$q<4;$q++): ?>
+                            <?php  if(isset($user->photos[$q])):?>
+                                <div class="user-photo-item">
+                                    <a href="#modal-<?=$user->photos[$q]->id;?>" rel="modal:open">
+                                        <img src="<?=$base;?>/media/uploads/<?=$user->photos[$q]->body;?>" />
+                                    </a>
+                                    <div id="modal-<?=$user->photos[$q]->id;?>" style="display:none">
+                                        <img src="<?=$base;?>/media/uploads/<?=$user->photos[$q]->body;?>" />
+                                    </div>
+                                </div>
+                            <?php endif; ?>
+                       <?php endfor; ?>         
+  
                     </div>
                 </div>
 
-                <div class="box feed-item">
-                    <div class="box-body">
-                        <div class="feed-item-head row mt-20 m-width-20">
-                            <div class="feed-item-head-photo">
-                                <a href=""><img src="media/avatars/avatar.jpg" /></a>
-                            </div>
-                            <div class="feed-item-head-info">
-                                <a href=""><span class="fidi-name">Alfredo Augusto</span></a>
-                                <span class="fidi-action">fez um post</span>
-                                <br/>
-                                <span class="fidi-date">07/03/2020</span>
-                            </div>
-                            <div class="feed-item-head-btn">
-                                <img src="assets/images/more.png" />
-                            </div>
-                        </div>
-                        <div class="feed-item-body mt-10 m-width-20">
-                            Pessoal, tudo bem! Busco parceiros para empreender comigo em meu software.<br/><br/>
-                            Acabei de aprová-lo na Appstore. É um sistema de atendimento via WhatsApp multi-atendentes para auxiliar empresas.<br/><br/>
-                            Este sistema permite que vários funcionários/colaboradores da empresa atendam um mesmo número de WhatsApp, mesmo que estejam trabalhando remotamente, sendo que cada um acessa com um login e senha particular....
-                        </div>
-                        <div class="feed-item-buttons row mt-20 m-width-20">
-                            <div class="like-btn on">56</div>
-                            <div class="msg-btn">3</div>
-                        </div>
-                        <div class="feed-item-comments">
-                            
-                            <div class="fic-item row m-height-10 m-width-20">
-                                <div class="fic-item-photo">
-                                    <a href=""><img src="media/avatars/avatar.jpg" /></a>
-                                </div>
-                                <div class="fic-item-info">
-                                    <a href="">Alfredo Augusto</a>
-                                    Comentando no meu próprio post
-                                </div>
-                            </div>
+                <?php if($user->id == $loggedUser->id): ?>                
+                    <?=$render('feed-editor',['user'=>$loggedUser]);?>
+                <?php endif; ?>
 
-                            <div class="fic-item row m-height-10 m-width-20">
-                                <div class="fic-item-photo">
-                                    <a href=""><img src="media/avatars/avatar.jpg" /></a>
-                                </div>
-                                <div class="fic-item-info">
-                                    <a href="">Alfredo Augusto</a>
-                                    Muito legal, parabéns!
-                                </div>
-                            </div>
+                 <?php foreach($feed['posts'] as $feedItem):   ?>
+                    <?=$render('feed-item',[
+                        'data' =>$feedItem,
+                        'loggedUser'=>$loggedUser
+                    ]);?>
+                <?php endforeach; ?>
 
-                            <div class="fic-answer row m-height-10 m-width-20">
-                                <div class="fic-item-photo">
-                                    <a href=""><img src="media/avatars/avatar.jpg" /></a>
-                                </div>
-                                <input type="text" class="fic-item-field" placeholder="Escreva um comentário" />
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
+                <div class="feed-pagination">        
+                    <?php for($q=0;$q<$feed['pageCount'];$q++) :?>
+                        <a class="<?=($q==$feed['currentPage']?'active':'')?>"   href="<?=$base;?>/perfil/<?=$user->id;?>?page=<?=$q;?>"> <?=$q+1?>     </a>
+                    <?php endfor; ?>
+                </div>     
 
             </div>
             
