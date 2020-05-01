@@ -136,7 +136,46 @@ class ProfileController extends Controller {
 
     }
 
+    // A partir daqui, eu criei o codigo sozinho
+
+    public function config(){
+
+        $this->render('profile_config', [
+            'loggedUser'=>$this->loggedUser,
     
+        ]);
+
+    }
+
+    public function updateUser() {
+        $id =        filter_input(INPUT_POST,'id');
+        $name =      filter_input(INPUT_POST,'name');
+        $password =  filter_input(INPUT_POST,'password');
+        $birthdate = filter_input(INPUT_POST,'birthdate');
+        $work =      filter_input(INPUT_POST,'work');
+        $city =      filter_input(INPUT_POST,'city');
+
+    
+        if($id && $name && $password && $birthdate){
+            $birthdate = explode('/',$birthdate);
+            if(count($birthdate) !=3){
+                $_SESSION['flash'] =  'Data de nascimento inválida!';
+                $this->redirect('/config');
+            }
+            $birthdate = $birthdate[2].'-'.$birthdate[1].'-'.$birthdate[0];
+            if(strtotime($birthdate) === false){
+                $_SESSION['flash'] =  'Data de nascimento inválida!';
+                $this->redirect('/config');
+            }
+
+            UserHandler::upUser($id,$name,$password,$birthdate,$work,$city);
+            $this->redirect('/config');
+
+        } else  {
+            $this->redirect('/config');
+        }
+
+    }
 
 
 }

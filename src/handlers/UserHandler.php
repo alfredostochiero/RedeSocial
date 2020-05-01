@@ -19,6 +19,9 @@ class UserHandler {
                 $loggedUser->email = $data['email'];
                 $loggedUser->name  = $data['name'];
                 $loggedUser->avatar = $data['avatar'];
+                $loggedUser->city = $data['city'];
+                $loggedUser->birthdate =  $data['birthdate'];
+                $loggedUser->work =  $data['work'];
 
 
                 return $loggedUser;
@@ -127,6 +130,33 @@ class UserHandler {
 
         return $token;
     }
+
+
+    public static function upUser($id, $name, $password, $birthdate,$work="",$city=""){
+        $hash =  password_hash($password, PASSWORD_DEFAULT);
+        if(!empty($password)){
+            User::update()
+            ->set('password', $hash)
+            ->set('name', $name)
+            ->set('birthdate', $birthdate)
+            ->set('work',$work)
+            ->set('city',$city)
+            ->where('id',$id)
+        ->execute();
+        } else {
+            User::update()
+            ->set('name', $name)
+            ->set('birthdate', $birthdate)
+            ->set('work',$work)
+            ->set('city',$city)
+            ->where('id',$id)
+        ->execute();
+        }
+        
+
+    }
+
+
 
     public static function isFollowing($from, $to) {
         $data =  UserRelation::select()
