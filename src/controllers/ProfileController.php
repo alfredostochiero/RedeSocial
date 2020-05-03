@@ -74,6 +74,17 @@ class ProfileController extends Controller {
 
     public function friends($atts=[]) {
 
+        // teste alfredo 
+        if(!empty($atts['s'])){
+            $seg = $atts['s'];
+        }else{
+            $seg = "";
+        }
+        
+
+
+        //
+
         $id = $this->loggedUser->id;
         if(!empty($atts['id'])) {
             $id =  $atts['id'];
@@ -99,7 +110,8 @@ class ProfileController extends Controller {
         $this->render('profile_friends', [
             'loggedUser'=>$this->loggedUser,
             'user'=>$user,
-            'isFollowing' => $isFollowing
+            'isFollowing' => $isFollowing,
+            'seg'=>$seg
         ]);
 
     }

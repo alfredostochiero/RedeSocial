@@ -22,13 +22,13 @@
                     <?php endif ?>
 
                     <div class="profile-info-item m-width-20">
-                        <a href="<?=$base;?>/perfil/<?=$user->id;?>/amigos" >
+                        <a href="<?=$base;?>/perfil/<?=$user->id;?>/amigos/se" >
                             <div class="profile-info-item-n"><?=count($user->followers);?></div>
                             <div class="profile-info-item-s">Seguidores</div>
                         </a>
                     </div>
                     <div class="profile-info-item m-width-20">
-                        <a href="<?=$base;?>/perfil/<?=$user->id;?>/amigos" >   
+                        <a href="<?=$base;?>/perfil/<?=$user->id;?>/amigos/si" >   
                             <div class="profile-info-item-n"><?=count($user->following);?></div>
                             <div class="profile-info-item-s">Seguindo</div>
                         </a>

@@ -16,7 +16,7 @@ $router->post('/post/new','PostController@new');
 
 
 $router->get('/perfil/{id}/fotos','ProfileController@photos');
-$router->get('/perfil/{id}/amigos','ProfileController@friends');
+$router->get('/perfil/{id}/amigos/{s}','ProfileController@friends');
 $router->get('/perfil/{id}/follow','ProfileController@follow');
 $router->get('/perfil/{id}','ProfileController@index');      // primeiro a especifica, depois a rota mais geral
 $router->get('/perfil','ProfileController@index');

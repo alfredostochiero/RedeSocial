@@ -38,14 +38,57 @@ class ConfigController extends Controller {
         $id =        $this->loggedUser->id;
         $name =      filter_input(INPUT_POST,'name');
         $password =  filter_input(INPUT_POST,'password');
+        $newPassword =  filter_input(INPUT_POST,'newPassword');
         $birthdate = filter_input(INPUT_POST,'birthdate');
         $work =      filter_input(INPUT_POST,'work');
         $city =      filter_input(INPUT_POST,'city');
 
+       // $avatar =    filter_input(INPUT_POST,'avatarFile');
+       // $cover =     filter_input(INPUT_POST,'coverFile');
+
         $user = UserHandler::getUser($this->loggedUser->id, false);
 
-    
-        if($id && $name && $password && $birthdate){
+        //Verificão se senha foi digitada
+        if(empty($password)){
+            $password = $user->password;
+            $newPassword = $password;
+        }
+        
+        //Verificão do nome
+        if(empty($name)){
+        $name = $user->name;
+        }
+
+        //Verificão da cidade
+        if(empty($city)){
+            $city = $user->city;
+        }
+        //Verificão do trabalho
+        if(empty($work)){
+            $work = $user->work;
+        }
+        //Verificão do avatar
+        /*
+        if(empty($avatar)){
+            $avatar = $user->avatar;
+        }
+        
+        //Verificão do cover
+        if(empty($cover)){
+            $cover = $user->cover;
+        }
+        */
+        //Verificão do dia de nascimento
+        if(empty($birthdate)){
+            $birthdate = date('d/m/Y', strtotime($user->birthdate));
+        }   
+        //Verificação se senha e a senha nova são iguais
+        if( $password != $newPassword) {
+        $_SESSION['flash'] = "Campos 'Nova Senha' e 'Confirmar Nova Senha' diferentes! ";
+        $this->redirect("/config");
+        }  
+  
+        if($id){
             $birthdate = explode('/',$birthdate);
             if(count($birthdate) !=3){
                 $_SESSION['flash'] =  'Data de nascimento não está  inválida!';

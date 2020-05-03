@@ -65,6 +65,7 @@ class UserHandler {
         if($data){
             $user =  new User();
             $user->id = $data['id'];
+            $user->password = $data['password'];
             $user->name = $data['name'];
             $user->birthdate = $data['birthdate'];
             $user->city = $data['city'];

@@ -12,11 +12,11 @@
                 <div class="box">
                     <div class="box-body">
                         <div class="tabs">
-                            <div class="tab-item " data-for="followers">
-                                Seguidores
+                            <div class="tab-item <?= ($seg =='se')?'active':'';?> " data-for="followers">
+                                Seguidores 
                             </div>
-                            <div class="tab-item active " data-for="following">
-                                Seguindo
+                            <div class="tab-item <?= ($seg =='si')?'active':'';?> " data-for="following">
+                                Seguindo   
                             </div>
                         </div>
                         <div class="tab-content">
