@@ -21,6 +21,8 @@ class Controller {
         return $base;
     }
 
+
+
     private function _render($folder, $viewName, $viewData = []) {
         if(file_exists('../src/views/'.$folder.'/'.$viewName.'.php')) {
             extract($viewData);
@@ -29,6 +31,8 @@ class Controller {
             require '../src/views/'.$folder.'/'.$viewName.'.php';
         }
     }
+
+
 
     private function renderPartial($viewName, $viewData = []) {
         $this->_render('partials', $viewName, $viewData);
